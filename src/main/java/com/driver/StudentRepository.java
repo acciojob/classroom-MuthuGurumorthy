@@ -70,11 +70,8 @@ public class StudentRepository {
     }
 
     public void deleteAll(){
-        for(String teacherName : teacherHashMap.keySet())
-            studentTeacherMap.remove(teacherName);
-        for(String studentName : studentHashMap.keySet())
-            studentHashMap.remove(studentName);
-        for(String teacherName : teacherHashMap.keySet())
-            teacherHashMap.remove(teacherName);
+        studentTeacherMap.clear();
+        studentHashMap.clear();
+        teacherHashMap.clear();
     }
 }
