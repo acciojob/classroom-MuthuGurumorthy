@@ -45,18 +45,23 @@ public class StudentRepository {
     }
 
     public List<String> findStudentsByTeacherName(String teacherName){
-        return studentTeacherMap.get(teacherName);
+        List<String> students=new ArrayList<>();
+        if(studentTeacherMap.containsKey(teacherName))
+            students = studentTeacherMap.get(teacherName);
+        return students;
     }
 
     public List<String> findAllStudents(){
         List<String> students = new ArrayList<>();
-        for(Student student: studentHashMap.values())
-            students.add(student.getName());
+        for(String studentName: studentHashMap.keySet())
+            students.add(studentName);
         return students;
     }
 
     public void deleteTeacherByName(String teacherName){
-        List<String> students=(studentTeacherMap.containsKey(teacherName)) ? studentTeacherMap.get(teacherName) : new ArrayList<>();
+        List<String> students = new ArrayList<>();
+        if (studentTeacherMap.containsKey(teacherName))
+            students = studentTeacherMap.get(teacherName);
         for(String studentName : students)
             if(studentHashMap.containsKey(studentName))
                 studentHashMap.remove(studentName);
@@ -69,7 +74,7 @@ public class StudentRepository {
             studentTeacherMap.remove(teacherName);
         for(String studentName : studentHashMap.keySet())
             studentHashMap.remove(studentName);
-        for(String tecaherName : teacherHashMap.keySet())
-            teacherHashMap.remove(tecaherName);
+        for(String teacherName : teacherHashMap.keySet())
+            teacherHashMap.remove(teacherName);
     }
 }
